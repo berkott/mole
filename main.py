@@ -4,8 +4,9 @@ import time
 
 living = True
 
+pygame.mixer.init()
+
 def main():
-    pygame.mixer.init()
     playSounds("intro")
     playSounds("commands")
     while living:
@@ -14,7 +15,9 @@ def main():
         time.sleep(0.1)
     
 def playSounds(name):
+    time.sleep(0.1)
     pygame.mixer.music.load("audio/" + name + "N.mp3")
+    time.sleep(0.1)
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy() == True:
         continue
@@ -26,8 +29,10 @@ def listen():
         print("Say something!")
         audio = r.listen(source)
     try:
-        print("You said: " + r.recognize_google(audio))
-        return r.recognize_google(audio)
+        # output = r.recognize_sphinx(audio)
+        output = r.recognize_google(audio)
+        print("You said: " + output)
+        return output
     except sr.UnknownValueError:
         return "Unknown"
     except sr.RequestError as e:
@@ -39,9 +44,8 @@ def pickAction(command):
     if (command == "what is a mole"):
         playSounds("mole")
     elif (command == "do magic"):
-        playSounds("magic")
-        playSounds("magicDem")
-        playSounds("magicPat")
+
+        playSounds("magicNew")
     elif (command == "please dance"):
         playSounds("dance")
     elif (command == "repeat commands"):
