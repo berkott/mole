@@ -1,0 +1,22 @@
+Intro line:
+    Hello there, my name is Calcium Sulfur Phosphorus Erbium, or CaSPEr for short, and I 
+    am a smart mole. To get me to do things, simply say my commands.
+        To get me to explain what a mole is say "What is a mole?"
+        To get me to become a wizard say "do magic"
+        To get me to dance say "please dance"
+        To get me to repeat these commands say "repeat commands"
+
+What is a mole?
+    A mole is the SI unit for the amount of substance. It is defined as the number of carbon
+    atoms in 12 grams of carbon-12. This number is called Avogadro's number and it is 6.022 x 10^23.
+
+Do magic
+    If you havent noticed by now, I am infact a wizard. To muggles, I say my name is __, but in actuallity
+    I'm Moley Potter. My favorite spell is Expelliarmus. 
+    Oh look it's a dementor! Expecto patronum!
+
+Please dance
+    Lucky for you, I have been dancing since before I learned to walk. Lemme show you...
+
+Special line: "jumping is fun"
+    Is your name Felix Felicis or is it Ms. Rogers (s)? Because you make Berkan very lucky!”
