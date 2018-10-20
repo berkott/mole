@@ -41,17 +41,16 @@ def listen():
     return "Error"
 
 def pickAction(command):
-    if (command == "what is a mole"):
+    if (command == "mole"):
         playSounds("mole")
-    elif (command == "do magic"):
-
+    elif (command == "magic"):
         playSounds("magicNew")
-    elif (command == "please dance"):
+    elif (command == "dance"):
         playSounds("dance")
-    elif (command == "repeat commands"):
+    elif (command == "repeat"):
         playSounds("commands")
-    elif (command == "jumping is fun"):
-        playSounds("other")
+#     elif (command == "jumping"):
+#         playSounds("other")
     elif (command == "Error"):
         playSounds("error")
     elif (command == "Unknown"):
