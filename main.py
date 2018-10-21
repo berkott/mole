@@ -1,7 +1,7 @@
+from __future__ import division
 import speech_recognition as sr
 import pygame
 import time
-from __future__ import division
 import Adafruit_PCA9685
 
 # sudo pip install adafruit-pca9685
