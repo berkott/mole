@@ -1,6 +1,18 @@
 import speech_recognition as sr
 import pygame
 import time
+from __future__ import division
+import Adafruit_PCA9685
+
+# sudo pip install adafruit-pca9685
+
+pwm = Adafruit_PCA9685.PCA9685()
+
+#pwm = Adafruit_PCA9685.PCA9685(address=0x41, busnum=2)
+
+servo_min = 300  # Min pulse length out of 4096
+servo_max = 400  # Max pulse length out of 4096
+pwm.set_pwm_freq(60)
 
 living = True
 
@@ -20,6 +32,21 @@ def playSounds(name):
     time.sleep(0.1)
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy() == True:
+        pwm.set_pwm(0, 0, servo_min)
+        time.sleep(1)
+        pwm.set_pwm(0, 0, servo_max)
+        time.sleep(1)
+
+        pwm.set_pwm(1, 0, servo_min)
+        time.sleep(1)
+        pwm.set_pwm(1, 0, servo_max)
+        time.sleep(1)
+        
+        pwm.set_pwm(2, 0, servo_min)
+        time.sleep(1)
+        pwm.set_pwm(2, 0, servo_max)
+        time.sleep(1)
+        
         continue
 
 def listen():
@@ -49,8 +76,8 @@ def pickAction(command):
         playSounds("dance")
     elif (command == "repeat"):
         playSounds("commands")
-#     elif (command == "jumping"):
-#         playSounds("other")
+    elif (command == "jump"):
+        playSounds("other")
     elif (command == "Error"):
         playSounds("error")
     elif (command == "Unknown"):
