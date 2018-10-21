@@ -6,9 +6,9 @@ import Adafruit_PCA9685
 
 # sudo pip install adafruit-pca9685
 
-pwm = Adafruit_PCA9685.PCA9685()
+# pwm = Adafruit_PCA9685.PCA9685()
 
-#pwm = Adafruit_PCA9685.PCA9685(address=0x41, busnum=2)
+pwm = Adafruit_PCA9685.PCA9685(address=0x40, busnum=1)
 
 servo_min = 300  # Min pulse length out of 4096
 servo_max = 400  # Max pulse length out of 4096
