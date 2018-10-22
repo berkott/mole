@@ -2,17 +2,17 @@ from __future__ import division
 import speech_recognition as sr
 import pygame
 import time
-import Adafruit_PCA9685
+# import Adafruit_PCA9685
 
 # sudo pip install adafruit-pca9685
 
 # pwm = Adafruit_PCA9685.PCA9685()
 
-pwm = Adafruit_PCA9685.PCA9685(address=0x40, busnum=1)
+# pwm = Adafruit_PCA9685.PCA9685(address=0x40, busnum=1)
 
-servo_min = 300  # Min pulse length out of 4096
-servo_max = 400  # Max pulse length out of 4096
-pwm.set_pwm_freq(60)
+# servo_min = 300  # Min pulse length out of 4096
+# servo_max = 400  # Max pulse length out of 4096
+# pwm.set_pwm_freq(60)
 
 living = True
 
@@ -32,33 +32,46 @@ def playSounds(name):
     time.sleep(0.1)
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy() == True:
-        #pwm.set_pwm(0, 0, servo_min)
-        #time.sleep(1)
-        #pwm.set_pwm(0, 0, servo_max)
-        #time.sleep(1)
+        # pwm.set_pwm(1, 0, 375)
+        # pwm.set_pwm(0, 0, 375)
+        # pwm.set_pwm(2, 0, 250)
+        # time.sleep(.25)
 
-        # ___ Arm motor
-        pwm.set_pwm(1, 0, 375)
-        pwm.set_pwm(0, 0, 375)
-        pwm.set_pwm(2, 0, 250)
-        print("first command")
-        time.sleep(1)
-        pwm.set_pwm(1, 0, 500)
-        pwm.set_pwm(0, 0, 250)
-        pwm.set_pwm(2, 0, 325)
-        print("second command")
-        time.sleep(1)
-        
-        # Mouth motor
-        #pwm.set_pwm(2, 0, 250)
-        #time.sleep(1)
-        #pwm.set_pwm(2, 0, 325)
-        #time.sleep(1)
-        
+        # pwm.set_pwm(2, 0, 325)
+        # time.sleep(.25)
+
+        # pwm.set_pwm(1, 0, 500)
+        # pwm.set_pwm(0, 0, 250)
+        # pwm.set_pwm(2, 0, 250)
+        # time.sleep(.25)
+
+        # pwm.set_pwm(2, 0, 325)
+        # time.sleep(.25)
+
         continue
-
+    
+    # if (name == "magic"):
+    #     pwm.set_pwm(1, 0, 375)
+    #     time.sleep(0.5)
+    #     pwm.set_pwm(1, 0, 500)
+    #     time.sleep(0.5)
+    #     pwm.set_pwm(1, 0, 375)
+    # elif (name == "dance"):
+    #     for i in range(2):
+    #         pwm.set_pwm(1, 0, 375)
+    #         pwm.set_pwm(0, 0, 250)
+    #         time.sleep(.5)
+    #         pwm.set_pwm(1, 0, 500)
+    #         pwm.set_pwm(0, 0, 375)
+    #         time.sleep(.5)
+    #     pwm.set_pwm(1, 0, 375)
+        
 def listen():
     print("Ready")
+    pygame.mixer.music.load("audio/readyN.mp3")
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy() == True:
+        continue
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Say something!")
@@ -79,10 +92,10 @@ def pickAction(command):
     if (command == "mole"):
         playSounds("mole")
     elif (command == "magic"):
-        playSounds("magicNew")
+        playSounds("magic")
     elif (command == "dance"):
         playSounds("dance")
-    elif (command == "repeat"):
+    elif (command == "command"):
         playSounds("commands")
     elif (command == "jump"):
         playSounds("other")
@@ -92,15 +105,5 @@ def pickAction(command):
         playSounds("confused")
     else:
         playSounds("confused")
-
-def set_servo_pulse(channel, pulse):
-    pulse_length = 1000000    # 1,000,000 us per second
-    pulse_length //= 60       # 60 Hz
-    print('{0}us per period'.format(pulse_length))
-    pulse_length //= 4096     # 12 bits of resolution
-    print('{0}us per bit'.format(pulse_length))
-    pulse *= 1000
-    pulse //= pulse_length
-    pwm.set_pwm(channel, 0, pulse)
 
 main()

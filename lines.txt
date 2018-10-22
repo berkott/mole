@@ -1,10 +1,10 @@
 Intro line:
     Hello there, my name is Calcium Sulfur Phosphorus Erbium, or CaSPEr for short, and I 
     am a smart mole. To get me to do things, simply say my commands.
-        To get me to explain what a mole is say "What is a mole?"
-        To get me to become a wizard say "do magic"
-        To get me to dance say "please dance"
-        To get me to repeat these commands say "repeat commands"
+        To get me to explain what a mole is say "mole"
+        To get me to become a wizard say "magic"
+        To get me to dance say "dance"
+        To get me to repeat these commands say "command"
 
 What is a mole?
     A mole is the SI unit for the amount of substance. It is defined as the number of carbon
@@ -20,3 +20,8 @@ Please dance
 
 Special line: "jumping is fun"
     Is your name Felix Felicis or is it Ms. Rogers (s)? Because you make Berkan very lucky!”
+
+Record:
+    ready
+    magic
+    commands
