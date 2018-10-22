@@ -32,20 +32,28 @@ def playSounds(name):
     time.sleep(0.1)
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy() == True:
-        pwm.set_pwm(0, 0, servo_min)
-        time.sleep(1)
-        pwm.set_pwm(0, 0, servo_max)
-        time.sleep(1)
+        #pwm.set_pwm(0, 0, servo_min)
+        #time.sleep(1)
+        #pwm.set_pwm(0, 0, servo_max)
+        #time.sleep(1)
 
-        pwm.set_pwm(1, 0, servo_min)
+        # ___ Arm motor
+        pwm.set_pwm(1, 0, 375)
+        pwm.set_pwm(0, 0, 375)
+        pwm.set_pwm(2, 0, 250)
+        print("first command")
         time.sleep(1)
-        pwm.set_pwm(1, 0, servo_max)
+        pwm.set_pwm(1, 0, 500)
+        pwm.set_pwm(0, 0, 250)
+        pwm.set_pwm(2, 0, 325)
+        print("second command")
         time.sleep(1)
         
-        pwm.set_pwm(2, 0, servo_min)
-        time.sleep(1)
-        pwm.set_pwm(2, 0, servo_max)
-        time.sleep(1)
+        # Mouth motor
+        #pwm.set_pwm(2, 0, 250)
+        #time.sleep(1)
+        #pwm.set_pwm(2, 0, 325)
+        #time.sleep(1)
         
         continue
 
