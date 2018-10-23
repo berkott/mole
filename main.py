@@ -76,7 +76,15 @@ def listen():
         audio = r.listen(source)
     try:
         print("Recognizing ...")
+        pygame.mixer.music.load("/home/pi/mole/audio/recognizing.mp3")
+        pygame.mixer.music.play()
+        while pygame.mixer.music.get_busy() == True:
+            continue
         if (offline):
+            pygame.mixer.music.load("/home/pi/mole/audio/offline.mp3")
+            pygame.mixer.music.play()
+            while pygame.mixer.music.get_busy() == True:
+                continue
             output = r.recognize_sphinx(audio)
         else:
             output = r.recognize_google(audio)
