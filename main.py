@@ -14,6 +14,8 @@ living = True
 
 pygame.mixer.init()
 
+offline = False
+
 def main():
     playSounds("intro")
     playSounds("commands")
@@ -21,10 +23,10 @@ def main():
         command = listen()
         pickAction(command)
         time.sleep(0.1)
-    
+
 def playSounds(name):
     time.sleep(0.1)
-    pygame.mixer.music.load("audio/" + name + "N.mp3")
+    pygame.mixer.music.load("/home/pi/mole/audio/" + name + "N.mp3")
     time.sleep(0.1)
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy() == True:
@@ -43,9 +45,8 @@ def playSounds(name):
 
         pwm.set_pwm(2, 0, 325)
         time.sleep(.25)
-
         continue
-    
+
     if (name == "magic"):
         pwm.set_pwm(1, 0, 375)
         time.sleep(0.5)
@@ -61,10 +62,11 @@ def playSounds(name):
             pwm.set_pwm(0, 0, 375)
             time.sleep(.5)
         pwm.set_pwm(1, 0, 375)
-        
+
 def listen():
+    global offline
     print("Ready")
-    pygame.mixer.music.load("audio/readyN.mp3")
+    pygame.mixer.music.load("/home/pi/mole/audio/readyN.mp3")
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy() == True:
         continue
@@ -73,19 +75,24 @@ def listen():
         print("Say something!")
         audio = r.listen(source)
     try:
-        # output = r.recognize_sphinx(audio)
-        output = r.recognize_google(audio)
+        print("Recognizing ...")
+        if (offline):
+            output = r.recognize_sphinx(audio)
+        else:
+            output = r.recognize_google(audio)
         print("You said: " + output)
         return output
     except sr.UnknownValueError:
         return "Unknown"
     except sr.RequestError as e:
+        offline = True
         print("Could not request results from Google Speech Recognition service; {0}".format(e))
         return "Error"
     return "Error"
 
 def pickAction(command):
-    if (command == "mole"):
+    command = command.lower()
+    if (command == "mole" or command == "information" or command == "chemistry"):
         playSounds("mole")
     elif (command == "magic"):
         playSounds("magic")
@@ -99,6 +106,8 @@ def pickAction(command):
         playSounds("error")
     elif (command == "Unknown"):
         playSounds("confused")
+    elif (command == "halt"):
+        exit()
     else:
         playSounds("confused")
 
